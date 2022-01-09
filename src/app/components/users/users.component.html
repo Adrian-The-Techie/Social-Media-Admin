@@ -1,0 +1,95 @@
+<div class="list-container px-2">
+  <div class="list-mobile-view">
+    <div class="title text-center">
+      <p>USERS</p>
+    </div>
+    <hr />
+    <div class="action-btn">
+      <a class="btn" routerLink="/system/newUser">Add new user</a>
+    </div>
+    <hr />
+
+    <div class="list-card" *ngFor="let user of users">
+      <div class="thumbnail-container">
+        <img src="" alt="" />
+      </div>
+      <div class="details w-100">
+        <div class="detail">
+          <h4>{{ user.first_name }} {{ user.last_name }}</h4>
+        </div>
+        <div class="action-btn">
+          <a class="btn" routerLink="/system/viewUser/{{ user.url }}">View </a>
+          <a class="btn" routerLink="/system/editUser/{{ user.url }}">Edit </a>
+          <a class="btn" (click)="deleteUser(user.url)">Delete </a>
+        </div>
+      </div>
+      <hr />
+    </div>
+  </div>
+  <div class="list-table">
+    <p-table
+      #usersTable
+      [value]="users"
+      [metaKeySelection]="true"
+      dataKey="code"
+      responsiveLayout="scroll"
+      [globalFilterFields]="['id', 'first_name', 'second_name', 'created_by']"
+    >
+      <ng-template pTemplate="caption">
+        <div class="d-flex justify-content-between">
+          <div class="start">
+            All Users
+            <span class="p-input-icon-left p-ml-auto">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="
+                  usersTable.filterGlobal($event.target.value, 'contains')
+                "
+                placeholder="Search user"
+              />
+            </span>
+          </div>
+          <div class="end">
+            <div class="action-btn">
+              <a class="btn" routerLink="/system/newUser">Add new user</a>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Date created</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="user" [pSelectableRowIndex]="rowIndex">
+          <td>{{ user.id }}</td>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.date_added }}</td>
+          <td>
+            <div class="form-group">
+              <select [(ngModel)]="action" (change)="takeAction(user.url)">
+                <option value="0" hidden>Select action</option>
+                <option value="1">View</option>
+                <option value="2">Edit</option>
+                <option value="3">Delete</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="spinner w-100">
+    <app-spinner></app-spinner>
+  </div>
+</div>

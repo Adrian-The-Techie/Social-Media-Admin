@@ -1,0 +1,23 @@
+.welcome-aboard{
+    display: none;
+    position: fixed !important;
+    width:50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.sign-up{
+    background: $bg;
+    width: 100%;
+    .sign-up-content{
+        width:100%;
+        margin: .5rem;
+        .sign-up-btn{
+            background-color: map-get($themeColors, 'orange');
+            color: white;
+        }
+    }
+    .sign-up-title{
+        text-align: center;
+    }
+}

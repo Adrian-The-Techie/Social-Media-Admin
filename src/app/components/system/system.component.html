@@ -1,0 +1,31 @@
+<mat-sidenav-container [hasBackdrop]="hasBackdrop">
+    <mat-sidenav #sidenav [mode]="mode" [opened]="sidenavState">
+            <div class="nav-bar" (click)="sidenavState == false ? sidenav.close() : null">
+                <div class="close-btn mr-2" (click)="sidenav.close()">
+                    <i class="fas fa-times pr-2"></i>
+                </div>
+                <div class="credentials">
+                    <div class="thumbnail-controller">
+                        <img src="" alt="">
+                    </div>
+                </div>
+                <div class="nav-content">
+                    <ul>
+                        <li><a routerLink="/system/organisations">Organisations</a></li>
+                        <li><a routerLink="/system/users">Users</a></li>
+                    </ul>
+                </div>
+                <div class="footer mb-2" (click)="signOut()">
+                    <a>Sign out</a>
+                </div> 
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="content">
+                <router-outlet></router-outlet>   
+            </div> 
+            <div class="hamburger-btn ml-1 mt-1"(click)="sidenav.open()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>

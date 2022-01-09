@@ -1,0 +1,36 @@
+.login, .sign-up{
+    min-height: 100vh;
+    // background: linear-gradient(rgba(0,0,0,0.6), rgba(116, 112, 112, 0.6)), url("images/pexels-pixabay-531880.jpg") center/cover no-repeat fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login-content, .sign-up-content{
+        background-color: whitesmoke;
+        padding: 7px;
+    }
+}
+.login{
+    background: linear-gradient(rgba(0,0,0,0.6),rgba(255,165,0, 0.8)), center/cover no-repeat fixed;
+    .login-content{
+      width: 90%;
+    //   text-align: center;
+      border-radius: 10px;
+      .login-btn{
+          background-color: map-get($themeColors, 'orange');
+          color:white;
+      }
+      .forgot-password, .create-account{
+          a{
+              text-decoration: underline;
+              color: #007bff;
+              cursor: pointer;
+          }
+          a:hover{
+              color: map-get($themeColors, 'orange');
+          }
+      }
+      .hint{
+          float:left
+      }
+    }
+}

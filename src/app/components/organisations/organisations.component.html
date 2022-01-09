@@ -1,0 +1,99 @@
+<div class="list-container px-2">
+  <div class="list-mobile-view">
+    <div class="title text-center">
+      <p>ORGANISATIONS</p>
+    </div>
+    <hr />
+    <div class="action-btn">
+      <a class="btn" routerLink="/system/newOrganisation"
+        >Add new organisation</a
+      >
+    </div>
+    <hr />
+
+    <div class="list-card" *ngFor="let org of orgs">
+      <div class="thumbnail-container">
+        <img src="" alt="" />
+      </div>
+      <div class="details w-100">
+        <div class="detail">
+          <h4>{{ org.name }}</h4>
+        </div>
+        <div class="action-btn">
+          <a class="btn" routerLink="/system/viewOrg/{{ org.url }}">View </a>
+          <a class="btn" routerLink="/system/editOrg/{{ org.url }}">Edit </a>
+          <a class="btn" (click)="deleteOrg(org.url)">Delete </a>
+        </div>
+      </div>
+      <hr />
+    </div>
+  </div>
+  <div class="list-table">
+    <p-table
+      #orgsTable
+      [value]="orgs"
+      selectionMode="multiple"
+      [(selection)]="selectedOrgs"
+      [metaKeySelection]="true"
+      dataKey="code"
+      responsiveLayout="scroll"
+      [globalFilterFields]="['id', 'name', 'created_by']"
+    >
+      <ng-template pTemplate="caption">
+        <div class="d-flex justify-content-between">
+          <div class="start">
+            All organisations
+            <span class="p-input-icon-left p-ml-auto">
+              <i class="pi pi-search"></i>
+              <input
+                pInputText
+                type="text"
+                (input)="
+                  orgsTable.filterGlobal($event.target.value, 'contains')
+                "
+                placeholder="Search keyword"
+              />
+            </span>
+          </div>
+          <div class="end">
+            <div class="action-btn">
+              <a class="btn" routerLink="/system/newOrganisation"
+                >Add new organisation</a
+              >
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Date created</th>
+          <th>Created by</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-org let-rowIndex="rowIndex">
+        <tr [pSelectableRow]="org" [pSelectableRowIndex]="rowIndex">
+          <td>{{ org.id }}</td>
+          <td>{{ org.name }}</td>
+          <td>{{ org.date_added }}</td>
+          <td>{{ org.created_by }}</td>
+          <td>
+            <div class="form-group">
+              <select [(ngModel)]="action" (change)="takeAction(org.url)">
+                <option value="0" hidden>Select action</option>
+                <option value="1">View</option>
+                <option value="2">Edit</option>
+                <option value="3">Delete</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="spinner w-100">
+    <app-spinner></app-spinner>
+  </div>
+</div>

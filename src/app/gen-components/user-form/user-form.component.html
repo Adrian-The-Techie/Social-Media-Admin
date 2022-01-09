@@ -1,0 +1,247 @@
+<div class="user-form-container pl-4 pr-4">
+  <div class="title text-center">
+    <p>{{ url == "" ? "New User" : userForm.get("username").value }}</p>
+  </div>
+  <hr />
+  <div class="">
+    <form [formGroup]="userForm">
+      <div class="sect-title mr-4">
+        <p>Basic info</p>
+      </div>
+      <div class="form-group mb-3">
+        <label for="first_name">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="First Name"
+          id="first_name"
+          formControlName="first_name"
+        />
+        <div
+          *ngIf="form.first_name.touched && form.first_name.invalid"
+          class="alert alert-danger"
+        >
+          <ul>
+            <li *ngIf="form.first_name.errors.required">
+              First Name is required.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="last_name">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Last Name"
+          id="last_name"
+          formControlName="last_name"
+        />
+        <div
+          *ngIf="form.last_name.touched && form.last_name.invalid"
+          class="alert alert-danger"
+        >
+          <ul *ngIf="form.last_name.errors.required">
+            Last Name is required.
+          </ul>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="id_number">ID number</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="ID Number"
+          id="id_number"
+          formControlName="id_number"
+        />
+        <div
+          *ngIf="form.id_number.touched && form.id_number.invalid"
+          class="alert alert-danger"
+        >
+          <ul>
+            <li *ngIf="form.id_number.errors.required">
+              ID Number is required.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="phone">Phone number</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Phone number"
+          id="phone"
+          formControlName="phone"
+        />
+        <div
+          *ngIf="form.phone.touched && form.phone.invalid"
+          class="alert alert-danger"
+        >
+          <ul>
+            <li *ngIf="form.phone_number.errors.required">
+              Phone number is required.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          id="email"
+          formControlName="email"
+          (keyup)="getUniqueEmail()"
+        />
+        <div
+          *ngIf="form.email.touched && form.email.invalid"
+          class="alert alert-danger"
+        >
+          <ul>
+            <li *ngIf="form.email.errors.email">Please enter a valid email</li>
+            <li *ngIf="form.email.errors.emailExists">
+              There seems to be an user with that email. Please choose a unique
+              email
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="org">Organisation</label>
+        <select
+          formControlName="org"
+          class="form-control"
+          id="org"
+          placeholder="Select organisation you work for"
+        >
+          <option *ngFor="let org of orgs" [value]="org.id">
+            {{ org.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="form.org.touched && form.org.invalid"
+          class="alert alert-danger"
+        >
+          <ul>
+            <li *ngIf="form.org.errors.required">Organisation is required.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="role">Role</label>
+        <select
+          formControlName="role"
+          class="form-control"
+          id="role"
+          placeholder="Select role you work as"
+        >
+          <option value="1">Admin</option>
+        </select>
+        <div
+          *ngIf="form.role.touched && form.role.invalid"
+          class="alert alert-danger"
+        >
+          <ul>
+            <li *ngIf="form.role.errors.required">Role is required.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="sect-title mr-4">
+        <p>Login credentials</p>
+      </div>
+      <div class="form-group mb-3">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          id="username"
+          formControlName="username"
+          (keyup)="getUniqueUsername()"
+        />
+        <div
+          *ngIf="form.username.touched && form.username.invalid"
+          class="alert alert-danger"
+        >
+          <ul>
+            <li *ngIf="form.username.errors.required">Username is required.</li>
+            <li *ngIf="form.username.errors.usernameExists">
+              There seems to be an user with that username. Please choose a
+              unique username.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ng-container *ngIf="url == ''">
+        <div class="form-group mb-3">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            id="password"
+            formControlName="password"
+          />
+          <div
+            *ngIf="form.password.touched && form.password.invalid"
+            class="alert alert-danger"
+          >
+            <ul>
+              <li *ngIf="form.password.errors.required">
+                Password is required.
+              </li>
+              <li *ngIf="form.password.errors.minLength">
+                Password should be at least 8 characters.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="conf_pass">Confirm Password</label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirm Password"
+            id="conf_pass"
+            formControlName="confirm_password"
+          />
+          <div
+            *ngIf="
+              form.confirm_password.touched && form.confirm_password.invalid
+            "
+            class="alert alert-danger"
+          >
+            <ul>
+              <li *ngIf="form.confirm_password.errors.required">
+                Please confirm your password.
+              </li>
+              <li *ngIf="userForm.hasError('notMatch')">
+                Your passwords do not match.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="url == ''; else update">
+        <div class="action-btn">
+          <button class="btn btn-primary" (click)="save(false)">
+            Save and new
+          </button>
+          <button class="btn btn-success" (click)="save(true)">Save</button>
+        </div>
+      </ng-container>
+
+      <ng-template #update>
+        <div class="action-btn">
+          <button class="btn btn-secondary" (click)="save(true)">Update</button>
+        </div>
+      </ng-template>
+    </form>
+  </div>
+  <div class="spinner w-100">
+    <app-spinner></app-spinner>
+  </div>
+</div>

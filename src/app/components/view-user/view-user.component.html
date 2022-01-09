@@ -1,0 +1,42 @@
+<div class="view-container">
+    <div class="title text-center">{{user.username}}</div>
+    <div class="details">
+        <p class="ml-2">Personal info</p>
+        <div class="detail d-inline-flex">
+          <p id="title">Name:</p>
+          &nbsp;
+          <p id="category-detail">{{ user.username }}</p>
+        </div>
+        <br />
+        <div class="detail d-inline-flex">
+          <p id="title">Phone:</p>
+          &nbsp;
+          <p id="category-detail">
+            <a href="tel:{{ user.phone }}">{{ user.phone }}</a>
+          </p>
+        </div>
+        <br />
+        <div class="detail d-inline-flex">
+          <p id="title">Email:</p>
+          &nbsp;
+          <p id="category-detail">
+            <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+          </p>
+        </div>
+        <br />
+        <div class="detail d-inline-flex">
+            <p id="title">Added by:</p>
+            &nbsp;
+            <p id="category-detail">{{ user.created_by }}</p>
+          </div>
+          <br />
+        <div class="detail d-inline-flex">
+          <p id="title">Date added:</p>
+          &nbsp;
+          <p id="category-detail">{{ user.date_added }}</p>
+        </div>
+      </div>
+    <div class="spinner w-100">
+        <app-spinner></app-spinner>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+.service-details-container{
+    mat-card-header-text{
+        width: 100%;
+    }
+    .specific-detail{
+        display: flex;
+        #title{
+            font-weight: 600;
+        }
+        #category-detail{
+            margin-top: .2rem;
+            height: 20px;
+            p{
+                font-size: 15px;
+                font-style:italic;
+            }
+        }
+    }
+    mat-card-actions{
+        button{
+            background: map-get($map: $themeColors, $key: 'orange');
+        } 
+    }
+    
+}

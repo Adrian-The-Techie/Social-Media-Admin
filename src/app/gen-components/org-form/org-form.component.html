@@ -1,0 +1,51 @@
+<div class="org-form-container pl-4 pr-4">
+  <div class="title text-center">
+    <p>{{ url == ''? 'New Organisation': orgForm.get('name').value }}</p>
+  </div>
+  <hr />
+  <div class="px-2">
+    <form [formGroup]="orgForm">
+      <div class="sect-title mr-4">
+        <p>Basic info</p>
+      </div>
+      <div class="form-group mb-3">
+        <label for="name">Organisation Name</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Organisation Name"
+          id="name"
+          formControlName="name"
+          (keyup)="getUniqueOrg()"
+        />
+        <div
+          *ngIf="form.name.touched && form.name.invalid"
+          class="alert alert-danger"
+        >
+          <ul>
+            <li *ngIf="form.name.errors.required">
+              Organisation Name is required.
+            </li>
+            <li *ngIf="form.name.errors.orgExists">
+              Organisation exists. Please choose another with a unique name.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="action-btn">
+        <ng-container *ngIf="url == ''; else update">
+          <button class="btn btn-primary" (click)="save(false)">
+            Save and new
+          </button>
+          <button class="btn btn-success" (click)="save(true)">Save</button>
+        </ng-container>
+        <ng-template #update>
+          <button class="btn btn-secondary" (click)="save(true)">Update</button>
+        </ng-template>
+      </div>
+    </form>
+  </div>
+  <div class="spinner w-100">
+    <app-spinner></app-spinner>
+  </div>
+</div>

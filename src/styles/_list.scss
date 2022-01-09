@@ -1,0 +1,43 @@
+.list-container{
+    .action-btn{
+        a{
+            background: map-get($map: $themeColors, $key: 'orange');
+            color:white
+        }
+    }
+    .list-mobile-view{
+        display:block;
+        .list-card{
+            height: 180px;
+            display: flex;
+            .thumbnail-container{
+                width:50%;
+                height: 100%;
+                img{
+                    max-width: 100%;
+                    height: 100%;
+                }
+            }
+            .details{
+                .specific-detail{
+                    display: flex;
+                }
+                .action-btn{
+                    a{
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+    .list-table{
+        display: none;
+    }
+    
+}
+// .service-form-container{
+//     .remove{
+//         margin:auto 0;
+//         cursor: pointer;
+//     }
+// }

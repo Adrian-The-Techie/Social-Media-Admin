@@ -1,0 +1,101 @@
+@include media-md{
+    .login{
+        .login-content{
+          width:80%;  
+        }
+    }
+    .sign-up-container{
+        display:flex;
+        min-height: 100vh;
+        background: $bg;
+        width: 100%;
+        position: fixed;
+        .welcome-aboard{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            h3{
+                color:white;
+            }
+        }
+    }
+    .sign-up{
+        width:50%;
+        margin-left: 50%;
+    }
+    mat-sidenav-container{
+        mat-sidenav{
+            width:30%;
+            .nav-bar{
+                width: 30%;
+                .close-btn{
+                    right:70%
+                }
+            }
+        }
+    }
+    .list-container{
+       .list-mobile-view{
+        display: none;
+    }
+    .list-table{
+        display: block;
+    } 
+    }
+    
+}
+@include media-lg{
+    .login{
+        .login-content{
+          width:60%;  
+        }
+    }
+    mat-sidenav-container{
+        mat-sidenav{
+            width:20%;
+            .nav-bar{
+                width: 20%;
+                .close-btn{
+                    right:80%
+                }
+            }
+        }
+    }
+    .services-container{
+        .services-list-mobile-view{
+            display: none;
+        }
+        .services-list-table{
+            display: block;
+        }
+    }
+    .action-btn{
+        justify-content: end;
+        &>button{
+            margin-right: 1rem;
+        }
+    }
+}
+@include media-xl{
+    .login{
+        .login-content{
+          width:50%;  
+        }
+    }
+    .sign-up{
+        background: transparent;
+        width:50%;
+        margin-left: 50%;
+    }
+    mat-sidenav-container{
+        mat-sidenav{
+            width:15%;
+            .nav-bar{
+                width: 15%;
+                .close-btn{
+                    right:85%
+                }
+            }
+        }
+    }
+}

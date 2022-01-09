@@ -1,0 +1,52 @@
+.nav-bar, .hamburger-btn{
+    position:fixed;
+    top:0;
+    left:0;
+}
+mat-sidenav-container{
+    height: 100%;
+    mat-sidenav{
+        width:50%;
+        background: $bg;
+        .nav-bar{
+            width:50%;
+            height: 100%;
+            .close-btn{
+                position: fixed;
+                top:0;
+                right: 50%;
+            }
+            ul{
+                list-style-type: none;
+                li{
+                    a{
+                        text-decoration: none;
+                        color:white !important
+                    }
+                    a:hover{
+                        color: map-get($map: $themeColors, $key: 'orange');
+                    }
+                }
+            }
+            .footer{
+                position:fixed;
+                padding-inline-start: 40px;
+                bottom: 0;
+                left: 0;
+                a{
+                    text-decoration: underline;
+                    font-style: italic;
+                    color:#007bff !important;
+                    cursor: pointer;
+                }
+                a:hover{
+                    color: map-get($map: $themeColors, $key: 'orange');
+                }
+            }
+        }
+        
+    }
+    mat-sidenav-content{
+        margin-right: 0px!important;
+    }
+}

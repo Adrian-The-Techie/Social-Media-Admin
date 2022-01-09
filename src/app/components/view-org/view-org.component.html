@@ -1,0 +1,42 @@
+<div class="view-container">
+    <div class="title text-center">{{org.name}}</div>
+    <div class="details">
+        <p class="ml-2">Personal info</p>
+        <div class="detail d-inline-flex">
+          <p id="title">Name:</p>
+          &nbsp;
+          <p id="category-detail">{{ org.name }}</p>
+        </div>
+        <br />
+        <div class="detail d-inline-flex">
+          <p id="title">Phone:</p>
+          &nbsp;
+          <p id="category-detail">
+            <a href="tel:{{ org.phone }}">{{ org.phone }}</a>
+          </p>
+        </div>
+        <br />
+        <div class="detail d-inline-flex">
+          <p id="title">Email:</p>
+          &nbsp;
+          <p id="category-detail">
+            <a href="mailto:{{ org.email }}">{{ org.email }}</a>
+          </p>
+        </div>
+        <br />
+        <div class="detail d-inline-flex">
+            <p id="title">Added by:</p>
+            &nbsp;
+            <p id="category-detail">{{ org.created_by }}</p>
+          </div>
+          <br />
+        <div class="detail d-inline-flex">
+          <p id="title">Date added:</p>
+          &nbsp;
+          <p id="category-detail">{{ org.date_added }}</p>
+        </div>
+      </div>
+    <div class="spinner w-100">
+        <app-spinner></app-spinner>
+    </div>
+</div>
